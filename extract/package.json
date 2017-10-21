@@ -1,0 +1,21 @@
+{
+  "name": "intercom-postman-collection",
+  "version": "1.0.0",
+  "description": "Creates a Postman collection for the Intercom API based on the developer docs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "intercom",
+    "postman",
+    "collection"
+  ],
+  "author": "Timothy Lim",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "parse-curl": "^0.2.5",
+    "request": "^2.83.0"
+  }
+}
