@@ -13,18 +13,18 @@
 ### Postman
 - Import > Import File
 
-![import - Postman](/docs/Import - Postman.png)
+![import - Postman](/docs/Import-Postman.png)
 
 ### Insomnia
 - Main Menu > Import/Export > Import Data
 
-![import - Insomnia](/docs/Import - Insomnia.png)
+![import - Insomnia](/docs/Import-Insomnia.png)
 
 ## 2. Getting Access Token
 
 - Get your Intercom Access Token from the [Developer Hub](https://app.intercom.io/developers/)
 
-![Intercom access token](/docs/Access Token - Apply.png)
+![Intercom access token](/docs/AccessToken-Apply.png)
 
 - Note: some API endpoints require an [Extended Access Token](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes)
    - If you try to access these endpoints with a Standard Token you will get a `Not authorized to access resource` error (full error details shown below)
@@ -45,12 +45,12 @@
 ### Postman
 - Environment Options > Manage Environments > Add
 
-![configuration - Postman](/docs/Configuration - Postman.png)
+![configuration - Postman](/docs/Configuration-Postman.png)
 
 ### Insomnia
 - Environments dropdown > Manage Environments > + 
 
-![configuration - Insomnia](/docs/Configuration - Insomnia.png)
+![configuration - Insomnia](/docs/Configuration-Insomnia.png)
 
 
 # Extracting the latest Postman collection
