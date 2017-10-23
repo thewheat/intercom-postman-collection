@@ -31,8 +31,9 @@ function createPostmanOutput(data){
 			description: "",
 			item: []
 		}
+
 		categoryData.forEach(function(item){
-			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "");
+			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "").replace(/-d'$/m, "-d '");
 			var curl = parse(code);
 			if(!curl){
 				console.error("=======================================================================================\n" + 
