@@ -12,7 +12,7 @@ function readJsonFromFile(dataFile){
 }
 
 function writeJSONToFile(input, outputFile){
-	const content = JSON.stringify(input);
+	const content = JSON.stringify(input, null, 2);
 	fs.writeFileSync(outputFile, content, 'utf8', function (err) {
 		if (err) {
 			console.error("ERROR: Could not write file (" + outputFile + ")\n", err);
