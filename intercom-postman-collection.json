@@ -2015,7 +2015,7 @@
           "response": []
         },
         {
-          "name": "View a Subscription",
+          "name": "Update a Subscription",
           "request": {
             "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
             "method": "POST",
@@ -2045,7 +2045,7 @@
           "response": []
         },
         {
-          "name": "View a Subscription",
+          "name": "Delete a Subscription",
           "request": {
             "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
             "method": "DELETE",
@@ -2053,6 +2053,11 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
                 "description": ""
               }
             ],
