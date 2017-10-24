@@ -70,7 +70,7 @@ function createPostmanEntry(item, curl){
 	}
 	var name = item.header;
 	if(item.subheader) {
-		name += " (" + item.subheader.replace(/^example /gi, "").replace(/ request$/gi, "") + ")";
+		name += " (" + item.subheader + ")";
 	}
 	var entry = {
 		"name": name,
@@ -134,7 +134,7 @@ function convertWebsiteSectionToJson(element, entries, $){
 		entry["header"] = header.text().trim();
 	}
 	if(codeHeader && codeHeader.hasClass("magic-block-textarea")){
-		entry["subheader"] = codeHeader.text().trim();
+		entry["subheader"] = codeHeader.text().trim().replace(/^example /gi, "").replace(/ ?request$/gi, "");
 	}
 	if (anchor){
 		anchor = anchor.attr("id")

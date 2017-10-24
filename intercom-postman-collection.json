@@ -374,7 +374,7 @@
       "description": "",
       "item": [
         {
-          "name": "Create Lead (Request)",
+          "name": "Create Lead",
           "request": {
             "url": "https://api.intercom.io/contacts",
             "method": "POST",
@@ -425,7 +425,7 @@
           "response": []
         },
         {
-          "name": "Update Lead (Request)",
+          "name": "Update Lead",
           "request": {
             "url": "https://api.intercom.io/contacts",
             "method": "POST",
@@ -455,7 +455,7 @@
           "response": []
         },
         {
-          "name": "List Leads (Request)",
+          "name": "List Leads",
           "request": {
             "url": "https://api.intercom.io/contacts",
             "method": "GET",
@@ -476,7 +476,7 @@
           "response": []
         },
         {
-          "name": "List by Email (Request)",
+          "name": "List by Email",
           "request": {
             "url": "https://api.intercom.io/contacts?email=obrien@truth.org",
             "method": "GET",
@@ -596,7 +596,7 @@
           "response": []
         },
         {
-          "name": "Update a Visitor (Request)",
+          "name": "Update a Visitor",
           "request": {
             "url": "https://api.intercom.io/visitors",
             "method": "PUT",
@@ -713,7 +713,7 @@
       "description": "",
       "item": [
         {
-          "name": "Create or Update Company (Request)",
+          "name": "Create or Update Company",
           "request": {
             "url": "https://api.intercom.io/companies",
             "method": "POST",
@@ -1091,7 +1091,7 @@
       "description": "",
       "item": [
         {
-          "name": "List Segments (Request)",
+          "name": "List Segments",
           "request": {
             "url": "https://api.intercom.io/segments",
             "method": "GET",
@@ -1133,7 +1133,7 @@
           "response": []
         },
         {
-          "name": "View a Segment (Request)",
+          "name": "View a Segment",
           "request": {
             "url": "https://api.intercom.io/segments/53203e244cba153d39000062",
             "method": "GET",
@@ -1181,7 +1181,7 @@
       "description": "",
       "item": [
         {
-          "name": "Create a Note (Request)",
+          "name": "Create a Note",
           "request": {
             "url": "https://api.intercom.io/notes",
             "method": "POST",
@@ -1274,7 +1274,7 @@
           "response": []
         },
         {
-          "name": "View a Note (Request)",
+          "name": "View a Note",
           "request": {
             "url": "https://api.intercom.io/notes/2",
             "method": "GET",
@@ -1994,7 +1994,7 @@
           "response": []
         },
         {
-          "name": "View a Subscription (Request)",
+          "name": "View a Subscription",
           "request": {
             "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
             "method": "GET",
