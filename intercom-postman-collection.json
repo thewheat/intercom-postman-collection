@@ -1964,7 +1964,7 @@
       "description": "",
       "item": [
         {
-          "name": "Manage Subscriptions",
+          "name": "Create a Subscriptions",
           "request": {
             "url": "https://api.intercom.io/subscriptions",
             "method": "POST",
