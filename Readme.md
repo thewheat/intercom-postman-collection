@@ -22,7 +22,7 @@
 
 ## 2. Getting Access Token
 
-- Get your Intercom Access Token from the [Developer Hub](https://app.intercom.io/developers/)
+- Get your Intercom Access Token from the [Developer Hub](https://app.intercom.io/developers/_)
 
 ![Intercom access token](/docs/AccessToken-Apply.png)
 
