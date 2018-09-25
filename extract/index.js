@@ -33,7 +33,7 @@ function createPostmanOutput(data){
 		}
 
 		categoryData.forEach(function(item){
-			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "").replace(/-d'$/m, "-d '");
+			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "").replace(/-d'$/m, "-d '").replace(/:Bearer/gm, ": Bearer").replace(/:application/gm, ": application");
 			var curl = parse(code);
 			if(!curl){
 				console.error("=======================================================================================\n" + 

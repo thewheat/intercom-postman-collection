@@ -7,33 +7,6 @@
   },
   "item": [
     {
-      "name": "Authorization",
-      "description": "",
-      "item": [
-        {
-          "name": "Using Access Tokens",
-          "request": {
-            "url": "https://api.intercom.io/users/5321a20f72cdbb4192000013",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Users",
       "description": "",
       "item": [
@@ -284,7 +257,28 @@
           "response": []
         },
         {
-          "name": "Delete a User (ID Delete)",
+          "name": "Scroll over all users",
+          "request": {
+            "url": "https://api.intercom.io/users/scroll?scroll_param=562bc29f-ea55-4823-aaaf-f3faadceaa59",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Archive a user (ID Archive)",
           "request": {
             "url": "https://api.intercom.io/users/5321a20f72cdbb4192000013",
             "method": "DELETE",
@@ -305,7 +299,7 @@
           "response": []
         },
         {
-          "name": "Delete a User (User ID Delete)",
+          "name": "Archive a user (User ID Archive)",
           "request": {
             "url": "https://api.intercom.io/users?user_id=25",
             "method": "DELETE",
@@ -326,7 +320,7 @@
           "response": []
         },
         {
-          "name": "Delete a User (User Email Delete)",
+          "name": "Archive a user (User Email Archive)",
           "request": {
             "url": "https://api.intercom.io/users?email=wash%40serenity.io",
             "method": "DELETE",
@@ -347,9 +341,108 @@
           "response": []
         },
         {
-          "name": "Scroll over all users",
+          "name": "Permanently delete a user (Permanently delete users)",
           "request": {
-            "url": "https://api.intercom.io/users/scroll?scroll_param=562bc29f-ea55-4823-aaaf-f3faadceaa59",
+            "url": "https://api.intercom.io/user_delete_requests",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"intercom_user_id\": \"530370b477ad7120001d\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Data Attributes",
+      "description": "",
+      "item": [
+        {
+          "name": "List Customer Data Attributes",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes/customer",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List Customer Data Attributes (List of your customer data attributes including archived)",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes/customer?include_archived=true",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List Company Data Attributes",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes/company",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List Company Data Attributes (List of your company data attributes including archived)",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes/company?include_archived=true",
             "method": "GET",
             "header": [
               {
@@ -898,7 +991,85 @@
         {
           "name": "View an Admin (Retrieve a single admin)",
           "request": {
-            "url": "https://api.intercom.io/admins/1",
+            "url": "https://api.intercom.io/admins/493881",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Set admin away mode",
+          "request": {
+            "url": "https://api.intercom.io/admins/814860/away",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"away_mode_enabled\": true,\n  \"away_mode_reassign\": false\n\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "description": "",
+      "item": [
+        {
+          "name": "List Teams (List Teams)",
+          "request": {
+            "url": "https://api.intercom.io/teams",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "View a Team (Retrieve a single team)",
+          "request": {
+            "url": "https://api.intercom.io/teams/493881",
             "method": "GET",
             "header": [
               {
@@ -1297,7 +1468,7 @@
       ]
     },
     {
-      "name": "Events",
+      "name": "Data Events",
       "description": "",
       "item": [
         {
@@ -1565,7 +1736,7 @@
           "response": []
         },
         {
-          "name": "User or Contact Initiated Conversation (User Initiated Message)",
+          "name": "User or Lead Initiated Conversation (User Initiated Message)",
           "request": {
             "url": "https://api.intercom.io/messages",
             "method": "POST",
@@ -1616,9 +1787,30 @@
           "response": []
         },
         {
+          "name": "List Conversations (List Open Conversations for a Particular Admin)",
+          "request": {
+            "url": "https://api.intercom.io/conversations?type=admin&admin_id=25&open=true",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
           "name": "Replying to a Conversation (Reply with and Without Attachments)",
           "request": {
-            "url": "https://api.intercom.io/conversations/147/reply",
+            "url": "https://api.intercom.io/conversations/{conversation_id}/reply",
             "method": "POST",
             "header": [
               {
@@ -1641,6 +1833,36 @@
             "body": {
               "mode": "raw",
               "raw": "\n{\n  \"intercom_user_id\": \"536e564f316c83104c000020\",\n  \"body\": \"Thanks again :)\",\n  \"type\": \"user\",\n  \"message_type\": \"comment\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Replying to a Conversation (Reply with a note)",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{conversation_id}/reply",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"admin_id\": \"814860\",\n  \"body\": \"<html> <body>  <h2>An Unordered HTML List</h2>  <ul>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ul>    <h2>An Ordered HTML List</h2>  <ol>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ol>   </body> </html>\",\n  \"type\": \"admin\",\n  \"message_type\": \"note\"\n}"
             }
           },
           "response": []
@@ -1700,8 +1922,34 @@
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"body\": \"Reassigning to no-one!\",\n  \"type\": \"admin\",\n  \"id\": \"6167678340\",\n  \"admin_id\": \"1234\",\n  \"assignee_id\": \"0\",\n  \"message_type\": \"assignment\"\n}"
+              "raw": "\n{\n  \"body\": \"Reassigning to no-one!\",\n  \"type\": \"admin\",\n  \"admin_id\": \"1234\",\n  \"assignee_id\": \"0\",\n  \"message_type\": \"assignment\"\n}"
             }
+          },
+          "response": []
+        },
+        {
+          "name": "Run assignment rules on a conversation (Assign based on assignment rules)",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{convo_id}/run_assignment_rules",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
           },
           "response": []
         },
@@ -1736,7 +1984,7 @@
           "response": []
         },
         {
-          "name": "Adding to group conversations (Adding a customer to a group conversation)",
+          "name": "Adding to group conversations as admin (Adding a customer to a group conversation)",
           "request": {
             "url": "https://api.intercom.io/conversations/11055118659/customers",
             "method": "POST",
@@ -1766,7 +2014,37 @@
           "response": []
         },
         {
-          "name": "Deleting from group conversations (Adding a customer to a group conversation)",
+          "name": "Adding to group conversations as customer (Adding a customer to a group conversation as customer)",
+          "request": {
+            "url": "https://api.intercom.io/conversations/11055118659/customers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"intercom_user_id\": \"55c1c78946b0aa9ef45b09ff\",\n  \"customer\":{\n    \"intercom_user_id\": \"58c1c78946a0aa9ef45b098a\"\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deleting from group conversations (Deleting a customer from a group conversation)",
           "request": {
             "url": "https://api.intercom.io/conversations/11055118659/customers/58c1c72246a0aa9ef45a098e",
             "method": "DELETE",
@@ -1826,7 +2104,7 @@
           "response": []
         },
         {
-          "name": "Unsnoozing a conversation (Snooze a conversation)",
+          "name": "Unsnoozing a conversation (Unsnooze a conversation)",
           "request": {
             "url": "https://api.intercom.io/conversations/11055118659/reply",
             "method": "POST",
@@ -1852,48 +2130,6 @@
               "mode": "raw",
               "raw": "\n{\n  \"admin_id\": \"814860\",\n  \"message_type\":\"open\"\n}"
             }
-          },
-          "response": []
-        },
-        {
-          "name": "List Conversations (List Open Conversations for a Particular Admin)",
-          "request": {
-            "url": "https://api.intercom.io/conversations?type=admin&admin_id=25&open=true",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Sorting by customer waiting time (Sort conversation by waiting_since)",
-          "request": {
-            "url": "https://api.intercom.io/conversations?order=waiting_since&sort=desc",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
           },
           "response": []
         },
