@@ -215,6 +215,32 @@
           "response": []
         },
         {
+          "name": "List by Email (List Users by Email)",
+          "request": {
+            "url": "https://api.intercom.io/users?email=test@test.com",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Intercom-Version",
+                "value": "1.1",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
           "name": "List by Tag, Segment, Company (Tag)",
           "request": {
             "url": "https://api.intercom.io/users?tag_id=3142",
@@ -1069,7 +1095,7 @@
         {
           "name": "View a Team (Retrieve a single team)",
           "request": {
-            "url": "https://api.intercom.io/teams/493881",
+            "url": "https://api.intercom.io/teams/2744328",
             "method": "GET",
             "header": [
               {
@@ -2189,186 +2215,6 @@
             "body": {
               "mode": "raw",
               "raw": "{ \"body\":\"closing this convo\", \"admin_id\": CLOSING_ADMIN_ID, \"message_type\": \"close\", \"type\": \"admin\"}"
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Webhooks",
-      "description": "",
-      "item": [
-        {
-          "name": "Create a Subscriptions",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"service_type\": \"web\",\n  \"topics\": [\"conversation.admin.replied\", \"user.created\"],\n  \"url\": \"https://example.org/hooks/1\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "View a Subscription",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Update a Subscription",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"topics\": [\"conversation\", \"company\", \"users\"],\n  \"url\": \"https://example.org/hooks/1\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete a Subscription",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Subscriptions (List Subscriptions)",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Subscription Ping (Ping)",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions/nsub_6ab4c480-fd8b-11e3-958f-c779cae3e1b3/ping",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Event Webhooks (Event Webhook Create)",
-          "request": {
-            "url": "https://api.intercom.io/subscriptions",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"service_type\": \"web\",\n  \"topics\": [\"event.created\"],\n  \"url\": \"https://example.org/hooks/1\",\n  \"metadata\": { \n    \"event_names\": [\"invited-friend\"]\n  }\n}"
             }
           },
           "response": []
