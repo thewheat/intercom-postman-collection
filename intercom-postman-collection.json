@@ -1,7 +1,7 @@
 {
   "variables": [],
   "info": {
-    "name": "Intercom API",
+    "name": "Intercom API (v 1.4)",
     "description": "A collection of examples of how to interact with the various endpoints of the Intercom API based on https://developers.intercom.com/reference",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
@@ -35,7 +35,7 @@
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"user_id\": \"25\",\n  \"email\": \"wash@serenity.io\",\n  \"name\": \"Hoban Washburne\",\n  \"phone\": \"555671243\",\n  \"signed_up_at\": 1392731331,\n  \"last_seen_ip\" : \"1.2.3.4\",\n  \"last_seen_user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9,\n    \"last_order_at\":1475569818\n  },\n  \"companies\": [\n    {\n      \"company_id\" : \"366\",\n      \"name\" : \"Serenity\",\n      \"monthly_spend\" : 500\n    }\n  ]\n}"
+              "raw": "\n{\n  \"user_id\": \"25\",\n  \"email\": \"wash@serenity.io\",\n  \"name\": \"Hoban Washburne\",\n  \"phone\": \"555671243\",\n  \"signed_up_at\": 1392731331,\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9,\n    \"last_order_at\":1475569818\n  },\n  \"companies\": [\n    {\n      \"company_id\" : \"366\",\n      \"name\" : \"Serenity\",\n      \"monthly_spend\" : 500\n    }\n  ]\n}"
             }
           },
           "response": []
@@ -399,96 +399,6 @@
       ]
     },
     {
-      "name": "Data Attributes",
-      "description": "",
-      "item": [
-        {
-          "name": "List Customer Data Attributes",
-          "request": {
-            "url": "https://api.intercom.io/data_attributes/customer",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Customer Data Attributes (List of your customer data attributes including archived)",
-          "request": {
-            "url": "https://api.intercom.io/data_attributes/customer?include_archived=true",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Company Data Attributes",
-          "request": {
-            "url": "https://api.intercom.io/data_attributes/company",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Company Data Attributes (List of your company data attributes including archived)",
-          "request": {
-            "url": "https://api.intercom.io/data_attributes/company?include_archived=true",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Leads",
       "description": "",
       "item": [
@@ -523,27 +433,6 @@
           "response": []
         },
         {
-          "name": "View a Lead (ID)",
-          "request": {
-            "url": "https://api.intercom.io/contacts?user_id=77177570-cf5d-4f1a-bc75-75202af47d4f",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "Update Lead",
           "request": {
             "url": "https://api.intercom.io/contacts",
@@ -568,8 +457,29 @@
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"id\": \"5811f6bbe6b4704ddfa84ac0\",\n  \"user_id\": \"77177570-cf5d-4f1a-bc75-75202af47d4f\",\n  \"phone\": \"123987456\",\n  \"email\": \"obrien@truth.org\",\n  \"name\": \"OBrien\",\n  \"last_seen_ip\" : \"1.2.3.4\",\n  \"last_seen_user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9\n  }\n}"
+              "raw": "\n{\n  \"id\": \"5811f6bbe6b4704ddfa84ac0\",\n  \"user_id\": \"77177570-cf5d-4f1a-bc75-75202af47d4f\",\n  \"phone\": \"123987456\",\n  \"email\": \"obrien@truth.org\",\n  \"name\": \"OBrien\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9\n  }\n}"
             }
+          },
+          "response": []
+        },
+        {
+          "name": "View a Lead (ID)",
+          "request": {
+            "url": "https://api.intercom.io/contacts?user_id=77177570-cf5d-4f1a-bc75-75202af47d4f",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
           },
           "response": []
         },
@@ -598,6 +508,27 @@
           "name": "List by Email",
           "request": {
             "url": "https://api.intercom.io/contacts?email=obrien@truth.org",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List by Phone",
+          "request": {
+            "url": "https://api.intercom.io/contacts?phone=00353875551234",
             "method": "GET",
             "header": [
               {
@@ -739,7 +670,7 @@
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"user_id\": \"124\",\n  \"name\": \"Winston Smith\",\n  \"last_seen_ip\" : \"1.2.3.4\",\n  \"last_seen_user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9\n  }\n}"
+              "raw": "\n{\n  \"user_id\": \"124\",\n  \"name\": \"Winston Smith\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9\n  }\n}"
             }
           },
           "response": []
@@ -990,6 +921,198 @@
       ]
     },
     {
+      "name": "Data Attributes",
+      "description": "",
+      "item": [
+        {
+          "name": "List Data Attributes (List all data attributes)",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List Data Attributes (List company data attributes)",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes?model=company",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List Data Attributes (List all data attributes including archived)",
+          "request": {
+            "url": "https://api.intercom.io/data_attributes?include_archived=true",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Data Events",
+      "description": "",
+      "item": [
+        {
+          "name": "Submitting Events (Submit an Event)",
+          "request": {
+            "url": "https://api.intercom.io/events",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"event_name\" : \"invited-friend\",\n  \"created_at\": 1391691571,\n  \"user_id\" : \"314159\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Event Model (Event Object)",
+          "request": {
+            "url": "https://api.intercom.io/events",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"event_name\" : \"invited-friend\",\n  \"created_at\": 1389913941,\n  \"user_id\": \"314159\",\n  \"metadata\": {\n     \"invitee_email\": \"pi@example.org\",\n     \"invite_code\": \"ADDAFRIEND\"\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Event Metadata Types (Event Metadata Types)",
+          "request": {
+            "url": "https://api.intercom.io/events",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"event_name\" : \"placed-order\",\n  \"created_at\": 1389913941,\n  \"user_id\": \"314159\",\n  \"metadata\": {\n    \"order_date\": 1392036272,\n    \"stripe_invoice\": \"inv_3434343434\",\n    \"order_number\": {\n      \"value\":\"3434-3434\",\n      \"url\": \"https://example.org/orders/3434-3434\"\n    },\n    \"price\": {\n      \"currency\":\"usd\",\n      \"amount\": 2999\n    }\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Events (List all customer events)",
+          "request": {
+            "url": "https://api.intercom.io/events?type=user&user_id=314159",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "View User Event Summaries (Get summary count of user events)",
+          "request": {
+            "url": "https://api.intercom.io/events?type=user&user_id=314159&summary=true",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Admins",
       "description": "",
       "item": [
@@ -1062,6 +1185,32 @@
               "mode": "raw",
               "raw": "\n{\n  \"away_mode_enabled\": true,\n  \"away_mode_reassign\": false\n\n}"
             }
+          },
+          "response": []
+        },
+        {
+          "name": "View admin activity logs",
+          "request": {
+            "url": "https://api.intercom.io/admins/activity_logs?created_at_after=489222000&created_at_before=685695600",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
           },
           "response": []
         }
@@ -1210,7 +1359,7 @@
           "response": []
         },
         {
-          "name": "Tag or Untag Users, Companies & Leads (Contacts)",
+          "name": "Tag or Untag Users, Companies & Leads (Contacts) (Tag)",
           "request": {
             "url": "https://api.intercom.io/tags",
             "method": "POST",
@@ -1474,129 +1623,6 @@
           "name": "View a Note",
           "request": {
             "url": "https://api.intercom.io/notes/2",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Data Events",
-      "description": "",
-      "item": [
-        {
-          "name": "Submitting Events (Submit an Event)",
-          "request": {
-            "url": "https://api.intercom.io/events",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"event_name\" : \"invited-friend\",\n  \"created_at\": 1391691571,\n  \"user_id\" : \"314159\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Event Model",
-          "request": {
-            "url": "https://api.intercom.io/events",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"event_name\" : \"invited-friend\",\n  \"created_at\": 1389913941,\n  \"user_id\": \"314159\",\n  \"metadata\": {\n     \"invitee_email\": \"pi@example.org\",\n     \"invite_code\": \"ADDAFRIEND\"\n  }\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Event Metadata Types (Event Metadata Types)",
-          "request": {
-            "url": "https://api.intercom.io/events",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"event_name\" : \"placed-order\",\n  \"created_at\": 1389913941,\n  \"user_id\": \"314159\",\n  \"metadata\": {\n    \"order_date\": 1392036272,\n    \"stripe_invoice\": \"inv_3434343434\",\n    \"order_number\": {\n      \"value\":\"3434-3434\",\n      \"url\": \"https://example.org/orders/3434-3434\"\n    },\n    \"price\": {\n      \"currency\":\"usd\",\n      \"amount\": 2999\n    }\n  }\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "List Events (List all customer events)",
-          "request": {
-            "url": "https://api.intercom.io/events?type=user&user_id=314159",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View User Event Summaries (Get summary count of user events)",
-          "request": {
-            "url": "https://api.intercom.io/events?type=user&user_id=314159&summary=true",
             "method": "GET",
             "header": [
               {
@@ -2222,23 +2248,73 @@
       ]
     },
     {
-      "name": "Errors",
+      "name": "Exports - Message Data",
       "description": "",
       "item": [
         {
-          "name": "Rate Limiting",
+          "name": "Creating an export job",
           "request": {
-            "url": "https://api.intercom.io/users/56e1e5d4a40df1cc57000101",
-            "method": "GET",
+            "url": "https://api.intercom.io/export/messages/data",
+            "method": "POST",
             "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
               {
                 "key": "Accept",
                 "value": "application/json",
                 "description": ""
               },
               {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"created_at_after\": 1527811200,\n  \"created_at_before\": 1530316800,\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Checking the status of the job",
+          "request": {
+            "url": "https://api.intercom.io/export/messages/data/v5xsp8c19ji0s82",
+            "method": "GET",
+            "header": [
+              {
                 "key": "Authorization",
                 "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Downloading the data",
+          "request": {
+            "url": "https://api.intercom.io/download/messages/data/xyz1234",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "‘Accept:",
                 "description": ""
               }
             ],
@@ -2247,6 +2323,11 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Errors",
+      "description": "",
+      "item": []
     }
   ]
 }

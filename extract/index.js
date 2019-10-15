@@ -3,10 +3,14 @@ const parse = require('parse-curl')
 const fs = require("fs");
 const cheerio = require('cheerio');
 
+const outputTempDevDocsHTML = "intercom-dev-docs.html"
 const outputTempDevDocsToJsonFile = "intercom-dev-doc-extract.json"
 const outputFinalPostmanFile =  "intercom-postman-collection.json";
 const URL = "https://developers.intercom.com/reference";
 
+function readFile(dataFile){
+	return fs.readFileSync(dataFile);
+}
 function readJsonFromFile(dataFile){
 	return JSON.parse(fs.readFileSync(dataFile));
 }
@@ -20,8 +24,23 @@ function writeJSONToFile(input, outputFile){
 	}); 
 }
 
+function writeToFile(content, outputFile){
+	fs.writeFileSync(outputFile, content, 'utf8', function (err) {
+		if (err) {
+			console.error("ERROR: Could not write file (" + outputFile + ")\n", err);
+		}
+	}); 
+}
 
 // Read custom JSON that describe developer docs and convert it into a file for Postman
+// Needs to be of the following format
+//    data[categoryname] = [
+//		{
+//			header:
+//			subheader:
+//			code:
+//		}
+//    ]
 function createPostmanOutput(data){
 	var postmanItems = [];	
 	for(var category in data){
@@ -59,6 +78,8 @@ function createPostmanOutput(data){
 }
 
 // Create a single Postman Entry based on custom JSON that describes a single code block in the developer docs
+// Item format: { header: , subheader: }
+// Output file Will print request text as: "header (subheader)"
 function createPostmanEntry(item, curl){
 	var headers = [];
 	for(var key in curl.header){
@@ -93,67 +114,157 @@ function createPostmanEntry(item, curl){
 }
 
 // From raw HTML of the page, extract Json file to represent actual code blocks
+// Returns:
+//    entries[categoryname] = [
+//		{
+//			header:
+//			subheader:
+//			code:
+//		}
+//    ]
 function convertDeveloperWebsiteHTMLToJson(body){
 	const $ = cheerio.load(body)
 	var entries = {};
-	$(".block-code-header a").each(function(i){
-		var element = $(this);
-		var text = element.text();
-		// only extract code sections that are for curl requests
-		if(text.match(/curl/gi) && !text.match(/http/gi)){
-			convertWebsiteSectionToJson(element, entries, $);
-		}
+	var codeLookup = {};
+
+	// get all codeblocks from website
+	$("#readme-data-docs").data("json").forEach(function(item){
+		var codeBlocks = findCodeBlocks(item);
+		codeBlocks.forEach(function(codeBlock){
+			if(!codeLookup[codeBlock.id]) codeLookup[codeBlock.id] = []
+			codeLookup[codeBlock.id].push(codeBlock);
+		});
 	})
+
+	// get list of categories and requests from sidebar
+	$(".hub-sidebar-category h3").each(function(){
+		item = $(this);
+		const category = item.text();
+
+		item.parent().find("li").each(function(){
+			li = $(this);
+
+			const title = li.text();
+			const extractID = li.attr("ng-class").match(/isActive\('([^']+)'/)
+			if(extractID){
+				var codeBlocks = codeLookup[extractID[1]];
+				if(codeBlocks){
+					codeBlocks.forEach(codeBlock => {
+						var entry = {
+							"header": title || codeBlock.title,
+							"subheader": codeBlock.subheader.trim().
+							                                 replace(/^\*\*/gi, "").
+							                                 replace(/\*\*$/gi, "").
+							                                 replace(/^example /gi, "").
+							                                 replace(/ ?request$/gi, "").
+							                                 trim(),
+							"code": codeBlock.code
+						}
+						if(!entries[category]) entries[category] = [];
+						entries[category].push(entry);
+					});
+				}
+			}
+			else{
+				console.error(`Could not extract ID for ${title}. Extracting from: ${li.attr("ng-class")}`);
+			}
+		});
+	});
 	return entries;
 }
 
 
-// Converts a code section from website into custom Json object that represents the code section
-function convertWebsiteSectionToJson(element, entries, $){
-	var anchor = null;
-	var header = null;
-	var category = "Unknown";
-	var entry = {
-		"header": "",
-		"subheader": "",
-		"code": ""
+////////////////////////////////////////////////////////////////////
+// look for all code blocks in this section/item
+// returns [{id:, category_id:, title:, subheader: , code: }]
+//
+// Request will show up as
+//    Category
+//       Title (subheader)
+//       Title (subheader)
+function findCodeBlocks(item){
+	const text = item.body;
+	var blocks = []
+	var start = 0;
+	var pos_start = -1;
+	var block = null;
+	var subheader = null;
+	var code = null;
+	var currentSubheader = {text: ''};
+	do{
+		if(subheader != null && code != null){
+			if(subheader.new_start < code.new_start){
+				currentSubheader = subheader;
+				subheader = null;
+			}
+		}
+		if(code != null){
+			codeBlockJson = JSON.parse(code.block);
+			curlCommands = codeBlockJson.codes.filter(x => x.language == "curl" && x.name != 'cURL HTTP Response' && x.name != 'cURL HTTP Request' && x.name != 'cURL HTTP Respnse');
+			curlCommands.forEach(curlCommand => {
+				blocks.push({
+					id: item._id,
+					category_id: item.category_id,
+					title: item.title,
+					subheader: currentSubheader.text,
+					code: curlCommand.code
+				});
+			});
+			start = code.new_start;
+		}
+		code = findCodeBlock(text, start);
+		subheader = findSubheaderBlock(text, start);
 	}
-
-	// link has an "ng-click" attribute of the following format "showCode(0)" that indicates which 
-	var index = parseInt(element.attr("ng-click").replace(/[showCode()]/g,""));
-	if(isNaN(index)) index = 0;
-	var code = element.closest(".magic-block-code").find(".block-code-code code").eq(index);
-	var codeHeader = element.closest(".magic-block-code").prev();
-	
-	var parent = element.closest(".hub-reference");	
-	if(parent){
-		header = parent.find(".hub-reference-section-top h2").eq(0);
-		anchor = parent.find("a.anchor-page-title").eq(0);
-	}
-	if (header){
-		entry["header"] = header.text().trim();
-	}
-	if(codeHeader && codeHeader.hasClass("magic-block-textarea")){
-		entry["subheader"] = codeHeader.text().trim().replace(/^example /gi, "").replace(/ ?request$/gi, "");
-	}
-	if (anchor){
-		anchor = anchor.attr("id")
-		category = $("#hub-sidebar-content a[href=#" + anchor + "]").closest(".hub-sidebar-category").find("h3").eq(0).text() || "Unknown"
-	}
-	if (code){
-		entry["code"] = code.text().trim();
-	}
-	if(!entries[category]) entries[category] = [];
-	entries[category].push(entry);
+	while(code != null || subheader != null);
+	return blocks;
 }
 
 
+////////////////////////////////////////////////////////////////////
+// data extraction from Readme custom code blocks
+
+const START_BLOCK_SUB_HEADER = "[block:textarea]";
+const START_BLOCK_CODE = "[block:code]";
+const END_BLOCK = "[/block]";
+
+function findCodeBlock(text, start_position)
+{
+	return findBlock(text, "Code", START_BLOCK_CODE, END_BLOCK, start_position);
+}
+function findSubheaderBlock(text, start_position)
+{
+	const block = findBlock(text, "Subheader", START_BLOCK_SUB_HEADER, END_BLOCK, start_position);
+	if(block == null) return null;
+	block.text = JSON.parse(block.block).text;
+	return block;
+}
+function findBlock(text, type, start_text, end_text, start_position)
+{
+	var start = text.indexOf(start_text, start_position);
+	if(start == -1) return null;
+	var end = text.indexOf(end_text , start);
+	if(end == -1) return null;
+
+
+	var block = text.substring(start + start_text.length, end);
+	return {
+		new_start: end + end_text.length,
+		block: block,
+		type: type
+	}
+}
+////////////////////////////////////////////////////////////////////
+
 // Do the download and extraction
+console.log(`Downloading dev docs: ${URL}....`);
 request.get(URL, function (error, response, body) {
+	error = false;
 	if(error){
 		console.error("ERROR: Could not download page", error);
 	}
 	else {
+		// body = readFile(outputTempDevDocsHTML)
+		writeToFile(body, outputTempDevDocsHTML);
 		if (response.statusCode != 200){
 			console.warn("WARNING: Expected response code of 200 but got " + response.statusCode + ". Data may not be properly returned but will try parsing anyway");
 		}
