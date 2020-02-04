@@ -1,49 +1,19 @@
 {
   "variables": [],
   "info": {
-    "name": "Intercom API (v 1.4)",
+    "name": "Intercom API (v 2.0)",
     "description": "A collection of examples of how to interact with the various endpoints of the Intercom API based on https://developers.intercom.com/reference",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
-      "name": "Users",
+      "name": "Common Structures",
       "description": "",
       "item": [
         {
-          "name": "Create or Update User (Create or Update Users)",
+          "name": "Pagination (Cursor) (Initial)",
           "request": {
-            "url": "https://api.intercom.io/users",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"user_id\": \"25\",\n  \"email\": \"wash@serenity.io\",\n  \"name\": \"Hoban Washburne\",\n  \"phone\": \"555671243\",\n  \"signed_up_at\": 1392731331,\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9,\n    \"last_order_at\":1475569818\n  },\n  \"companies\": [\n    {\n      \"company_id\" : \"366\",\n      \"name\" : \"Serenity\",\n      \"monthly_spend\" : 500\n    }\n  ]\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "View a User (ID)",
-          "request": {
-            "url": "https://api.intercom.io/users/5714dd359a3fd47136000001",
+            "url": "https://api.intercom.io/contacts?per_page=5",
             "method": "GET",
             "header": [
               {
@@ -58,352 +28,17 @@
               }
             ],
             "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View a User (User ID)",
-          "request": {
-            "url": "https://api.intercom.io/users?user_id=25",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View a User (Email)",
-          "request": {
-            "url": "https://api.intercom.io/users?email=wash%40serenity.io",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Updating the Last Seen Time (Update for Last Seen Time)",
-          "request": {
-            "url": "https://api.intercom.io/users",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"user_id\": \"25\",\n  \"last_request_at\": 1480076371\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Companies and Users (Associate a Company with a User)",
-          "request": {
-            "url": "https://api.intercom.io/users",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"id\": \"531ee472cce572a6ec000005\",\n  \"companies\": [\n    {\n    \"company_id\" : \"366\",\n    \"name\" : \"Serenity\"\n    }\n  ]\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Companies and Users (Remove a User from a Company)",
-          "request": {
-            "url": "https://api.intercom.io/users",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"id\": \"531ee472cce572a6ec000005\",\n  \"companies\": [\n    {\n      \"company_id\" : \"3\",\n     \"remove\" : true\n    }\n  ]\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "List Users (List Users Example)",
-          "request": {
-            "url": "https://api.intercom.io/users",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Email (List Users by Email)",
-          "request": {
-            "url": "https://api.intercom.io/users?email=test@test.com",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Intercom-Version",
-                "value": "1.1",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Tag, Segment, Company (Tag)",
-          "request": {
-            "url": "https://api.intercom.io/users?tag_id=3142",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Tag, Segment, Company (Segment)",
-          "request": {
-            "url": "https://api.intercom.io/users?segment_id=5926",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Scroll over all users",
-          "request": {
-            "url": "https://api.intercom.io/users/scroll?scroll_param=562bc29f-ea55-4823-aaaf-f3faadceaa59",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Archive a user (ID Archive)",
-          "request": {
-            "url": "https://api.intercom.io/users/5321a20f72cdbb4192000013",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Archive a user (User ID Archive)",
-          "request": {
-            "url": "https://api.intercom.io/users?user_id=25",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Archive a user (User Email Archive)",
-          "request": {
-            "url": "https://api.intercom.io/users?email=wash%40serenity.io",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Permanently delete a user (Permanently delete users)",
-          "request": {
-            "url": "https://api.intercom.io/user_delete_requests",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"intercom_user_id\": \"530370b477ad7120001d\"\n}"
-            }
           },
           "response": []
         }
       ]
     },
     {
-      "name": "Leads",
+      "name": "Contacts",
       "description": "",
       "item": [
         {
-          "name": "Create Lead",
+          "name": "Create a contact",
           "request": {
             "url": "https://api.intercom.io/contacts",
             "method": "POST",
@@ -420,23 +55,44 @@
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
+                "value": "application/x-www-form-urlencoded",
                 "description": ""
               }
             ],
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"phone\": \"123987456\",\n  \"email\": \"winstonsmith@truth.org\",\n  \"name\": \"Winston Smith\"\n}"
+              "raw": "\n{\n\t\"role\": \"user\",\n\t\"external_id\": \"25\",\n\t\"email\": \"wash@serenity.io\",\n\t\"phone\": \"+1123456789\",\n\t\"name\": \"Hoban Washburn\",\n\t\"avatar\": \"https://example.org/128Wash.jpg\",\n\t\"last_seen_at\": 1571069751,\n\t\"signed_up_at\": 1571069751,\n\t\"owner_id\": 127,\n\t\"unsubscribed_from_emails\": false,\n\t\"custom_attributes\": {\n\t\t\"paid_subscriber\": true,\n\t\t\"monthly_spend\": 155.5,\n\t\t\"team_mates\": 1\n\t}\n}\n"
             }
           },
           "response": []
         },
         {
-          "name": "Update Lead",
+          "name": "Retrieve a contact",
           "request": {
-            "url": "https://api.intercom.io/contacts",
-            "method": "POST",
+            "url": "https://api.intercom.io/contacts/<id>",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Update a contact",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>",
+            "method": "PUT",
             "header": [
               {
                 "key": "Authorization",
@@ -450,106 +106,22 @@
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
+                "value": "application/x-www-form-urlencoded",
                 "description": ""
               }
             ],
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"id\": \"5811f6bbe6b4704ddfa84ac0\",\n  \"user_id\": \"77177570-cf5d-4f1a-bc75-75202af47d4f\",\n  \"phone\": \"123987456\",\n  \"email\": \"obrien@truth.org\",\n  \"name\": \"OBrien\",\n  \"custom_attributes\": {\n    \"paid_subscriber\" : true,\n    \"monthly_spend\": 155.5,\n    \"team_mates\": 9\n  }\n}"
+              "raw": "\n{\n\t\"role\": \"user\",\n\t\"external_id\": \"25\",\n\t\"email\": \"wash@serenity.io\",\n\t\"phone\": \"+1123456789\",\n\t\"name\": \"Hoban Washburn\",\n\t\"avatar\": \"https://example.org/128Wash.jpg\",\n\t\"last_seen_at\": 1571069751,\n\t\"signed_up_at\": 1571069751,\n\t\"owner_id\": 127,\n\t\"unsubscribed_from_emails\": false,\n\t\"custom_attributes\": {\n\t\t\"paid_subscriber\": true,\n\t\t\"monthly_spend\": 155.5,\n\t\t\"team_mates\": 1\n\t}\n}\n"
             }
           },
           "response": []
         },
         {
-          "name": "View a Lead (ID)",
+          "name": "Delete a contact",
           "request": {
-            "url": "https://api.intercom.io/contacts?user_id=77177570-cf5d-4f1a-bc75-75202af47d4f",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Leads",
-          "request": {
-            "url": "https://api.intercom.io/contacts",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Email",
-          "request": {
-            "url": "https://api.intercom.io/contacts?email=obrien@truth.org",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Phone",
-          "request": {
-            "url": "https://api.intercom.io/contacts?phone=00353875551234",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Delete a Lead (ID Delete)",
-          "request": {
-            "url": "https://api.intercom.io/contacts/5811f6bbe6b4704ddfa84ac0",
+            "url": "https://api.intercom.io/contacts/<id>",
             "method": "DELETE",
             "header": [
               {
@@ -568,9 +140,9 @@
           "response": []
         },
         {
-          "name": "Convert a Lead (Lead Convert)",
+          "name": "Merge two contacts",
           "request": {
-            "url": "https://api.intercom.io/contacts/convert",
+            "url": "https://api.intercom.io/contacts/merge",
             "method": "POST",
             "header": [
               {
@@ -585,22 +157,64 @@
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
+                "value": "application/x-www-form-urlencoded",
                 "description": ""
               }
             ],
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"contact\": {\n    \"user_id\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n  },\n  \"user\": {\n    \"email\": \"winstonsmith@truth.org\"\n  }\n}"
+              "raw": "\n{\n  \"from\": \"5d70dd30de4efd54f42fd526\",\n  \"into\": \"5ba682d23d7cf92bef87bfd4\"\n}\n"
             }
           },
           "response": []
         },
         {
-          "name": "Scroll over all leads",
+          "name": "List all contacts",
           "request": {
-            "url": "https://api.intercom.io/contacts/scroll?scroll_param=562bc29f-ea55-4823-aaaf-f3faadceaa59",
+            "url": "https://api.intercom.io/contacts",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List attached companies",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/companies",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List attached tags",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/tags",
             "method": "GET",
             "header": [
               {
@@ -625,7 +239,7 @@
       "description": "",
       "item": [
         {
-          "name": "View a Visitor (ID)",
+          "name": "Retrieve a visitor (ID)",
           "request": {
             "url": "https://api.intercom.io/visitors?user_id=16e690c0-485a-4e87-ae98-a326e788a4f7",
             "method": "GET",
@@ -646,7 +260,7 @@
           "response": []
         },
         {
-          "name": "Update a Visitor",
+          "name": "Update a visitor",
           "request": {
             "url": "https://api.intercom.io/visitors",
             "method": "PUT",
@@ -676,9 +290,9 @@
           "response": []
         },
         {
-          "name": "Delete a visitor (ID Delete)",
+          "name": "Delete a visitor",
           "request": {
-            "url": "https://api.intercom.io/visitors/5321a20f72cdbb4192000013",
+            "url": "https://api.intercom.io/visitors/<id>",
             "method": "DELETE",
             "header": [
               {
@@ -697,37 +311,7 @@
           "response": []
         },
         {
-          "name": "Convert a Visitor to a Lead (Lead Convert)",
-          "request": {
-            "url": "https://api.intercom.io/visitors/convert",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"visitor\": {\n    \"user_id\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n  },\n  \"type\": \"lead\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Convert a Visitor to a User",
+          "name": "Convert a visitor",
           "request": {
             "url": "https://api.intercom.io/visitors/convert",
             "method": "POST",
@@ -763,7 +347,7 @@
       "description": "",
       "item": [
         {
-          "name": "Create or Update Company",
+          "name": "Create or update a company",
           "request": {
             "url": "https://api.intercom.io/companies",
             "method": "POST",
@@ -793,7 +377,7 @@
           "response": []
         },
         {
-          "name": "View a Company (View Request and Response)",
+          "name": "Retrieve a company",
           "request": {
             "url": "https://api.intercom.io/companies?company_id=141",
             "method": "GET",
@@ -814,72 +398,60 @@
           "response": []
         },
         {
-          "name": "List Companies (List companies)",
+          "name": "Attach a contact",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/companies",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n\t\"id\": \"56cde0cc3deab1bd8c000100\"\n}\n"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detach a contact",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/companies",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List all companies (List companies)",
           "request": {
             "url": "https://api.intercom.io/companies",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List by Tag or Segment (List by tag)",
-          "request": {
-            "url": "https://api.intercom.io/companies?tag_id=17",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Company Users (ID)",
-          "request": {
-            "url": "https://api.intercom.io/companies/5310dabd598c9a0a7e000005/users",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Company Users (Company ID)",
-          "request": {
-            "url": "https://api.intercom.io/companies?company_id=22&type=user",
             "method": "GET",
             "header": [
               {
@@ -917,6 +489,27 @@
             "description": ""
           },
           "response": []
+        },
+        {
+          "name": "List attached contacts",
+          "request": {
+            "url": "https://api.intercom.io/companies/<id>/contacts",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
         }
       ]
     },
@@ -925,10 +518,10 @@
       "description": "",
       "item": [
         {
-          "name": "List Data Attributes (List all data attributes)",
+          "name": "Create a data attribute (Requests & Response)",
           "request": {
             "url": "https://api.intercom.io/data_attributes",
-            "method": "GET",
+            "method": "POST",
             "header": [
               {
                 "key": "Authorization",
@@ -939,17 +532,26 @@
                 "key": "Accept",
                 "value": "application/json",
                 "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
               }
             ],
-            "description": ""
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"name\": \"list_cda\",\n  \"description\": \"You are either alive or dead\",\n  \"data_type\": \"options\",\n  \"company\": false,\n  \"options\": [\n    {\"value\": \"alive\"},\n    {\"value\": \"dead\"}\n  ]\n}"
+            }
           },
           "response": []
         },
         {
-          "name": "List Data Attributes (List company data attributes)",
+          "name": "Update a data attribute",
           "request": {
-            "url": "https://api.intercom.io/data_attributes?model=company",
-            "method": "GET",
+            "url": "https://api.intercom.io/data_attributes/163728",
+            "method": "PUT",
             "header": [
               {
                 "key": "Authorization",
@@ -960,16 +562,25 @@
                 "key": "Accept",
                 "value": "application/json",
                 "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
               }
             ],
-            "description": ""
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"description\": \"You are either great or bad\",\n  \"options\": [\n    {\"value\": \"great\"},\n    {\"value\": \"bad\"}\n  ]\n}"
+            }
           },
           "response": []
         },
         {
-          "name": "List Data Attributes (List all data attributes including archived)",
+          "name": "List all data attributes",
           "request": {
-            "url": "https://api.intercom.io/data_attributes?include_archived=true",
+            "url": "https://api.intercom.io/data_attributes?model=contact",
             "method": "GET",
             "header": [
               {
@@ -994,32 +605,7 @@
       "description": "",
       "item": [
         {
-          "name": "Submitting Events (Submit an Event)",
-          "request": {
-            "url": "https://api.intercom.io/events",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"event_name\" : \"invited-friend\",\n  \"created_at\": 1391691571,\n  \"user_id\" : \"314159\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Event Model (Event Object)",
+          "name": "The data event model (Event Object)",
           "request": {
             "url": "https://api.intercom.io/events",
             "method": "POST",
@@ -1044,7 +630,7 @@
           "response": []
         },
         {
-          "name": "Event Metadata Types (Event Metadata Types)",
+          "name": "Submit a data event (Submit an Event)",
           "request": {
             "url": "https://api.intercom.io/events",
             "method": "POST",
@@ -1069,182 +655,9 @@
           "response": []
         },
         {
-          "name": "List Events (List all customer events)",
+          "name": "List all data events (List all customer events)",
           "request": {
             "url": "https://api.intercom.io/events?type=user&user_id=314159",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View User Event Summaries (Get summary count of user events)",
-          "request": {
-            "url": "https://api.intercom.io/events?type=user&user_id=314159&summary=true",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Admins",
-      "description": "",
-      "item": [
-        {
-          "name": "List Admins (List Admins)",
-          "request": {
-            "url": "https://api.intercom.io/admins",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View an Admin (Retrieve a single admin)",
-          "request": {
-            "url": "https://api.intercom.io/admins/493881",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Set admin away mode",
-          "request": {
-            "url": "https://api.intercom.io/admins/814860/away",
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"away_mode_enabled\": true,\n  \"away_mode_reassign\": false\n\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "View admin activity logs",
-          "request": {
-            "url": "https://api.intercom.io/admins/activity_logs?created_at_after=489222000&created_at_before=685695600",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Teams",
-      "description": "",
-      "item": [
-        {
-          "name": "List Teams (List Teams)",
-          "request": {
-            "url": "https://api.intercom.io/teams",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View a Team (Retrieve a single team)",
-          "request": {
-            "url": "https://api.intercom.io/teams/2744328",
             "method": "GET",
             "header": [
               {
@@ -1269,7 +682,7 @@
       "description": "",
       "item": [
         {
-          "name": "Create and Update Tags",
+          "name": "Create or update a tag",
           "request": {
             "url": "https://api.intercom.io/tags",
             "method": "POST",
@@ -1299,97 +712,7 @@
           "response": []
         },
         {
-          "name": "Create and Update Tags",
-          "request": {
-            "url": "https://api.intercom.io/tags",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"id\": \"17513\",\n  \"name\": \"Independent\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Tag or Untag Users, Companies & Leads (Contacts) (Tag)",
-          "request": {
-            "url": "https://api.intercom.io/tags",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"name\": \"Independent\",\n  \"users\": [\n    {\n      \"id\" : \"53427b7ecce5722303000003\"\n    },\n    {\n      \"user_id\" : \"22\"\n    },\n    {\n      \"email\" : \"a@b.com\"\n    }\n  ]\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Tag or Untag Users, Companies & Leads (Contacts) (Tag)",
-          "request": {
-            "url": "https://api.intercom.io/tags",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"name\": \"Independent\",\n  \"users\": [\n    {\n      \"id\" : \"53427b7ecce5722303000003\",\n      \"untag\": true\n    },\n    {\n      \"user_id\" : \"22\"\n    }\n  ]\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete a Tag (Delete Tag)",
+          "name": "Delete a tag (Delete Tag)",
           "request": {
             "url": "https://api.intercom.io/tags/17513",
             "method": "DELETE",
@@ -1410,10 +733,70 @@
           "response": []
         },
         {
-          "name": "List Tags for an App (List Tag)",
+          "name": "Attach a contact",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/tags",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n\t\"id\": \"2084335\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attach a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/tags",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"id\": \"2084335\",\n  \"admin\": \"123\"\n}\n"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tag companies",
           "request": {
             "url": "https://api.intercom.io/tags",
-            "method": "GET",
+            "method": "POST",
             "header": [
               {
                 "key": "Authorization",
@@ -1424,23 +807,56 @@
                 "key": "Accept",
                 "value": "application/json",
                 "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
               }
             ],
-            "description": ""
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"name\": \"Independent\",\n  \"companies\": [\n    {\n      \"id\" : \"53427b7ecce5722303000003\"\n    }\n  ]\n}"
+            }
           },
           "response": []
-        }
-      ]
-    },
-    {
-      "name": "Segments",
-      "description": "",
-      "item": [
+        },
         {
-          "name": "List Segments",
+          "name": "Detach a contact",
           "request": {
-            "url": "https://api.intercom.io/segments",
-            "method": "GET",
+            "url": "https://api.intercom.io/contacts/<id>/tags",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n\t\"id\": \"2084335\"\n}\n"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detach a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/tags/<tag_id>",
+            "method": "DELETE",
             "header": [
               {
                 "key": "Authorization",
@@ -1458,10 +874,10 @@
           "response": []
         },
         {
-          "name": "List Segments",
+          "name": "Untag companies",
           "request": {
-            "url": "https://api.intercom.io/segments?include_count=true",
-            "method": "GET",
+            "url": "https://api.intercom.io/tags",
+            "method": "POST",
             "header": [
               {
                 "key": "Authorization",
@@ -1472,37 +888,25 @@
                 "key": "Accept",
                 "value": "application/json",
                 "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "View a Segment",
-          "request": {
-            "url": "https://api.intercom.io/segments/53203e244cba153d39000062",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
               },
               {
-                "key": "Accept",
+                "key": "Content-Type",
                 "value": "application/json",
                 "description": ""
               }
             ],
-            "description": ""
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"name\": \"Independent\",\n  \"companies\": [\n    {\n      \"id\" : \"53427b7ecce5722303000003\",\n      \"untag\": true\n    },\n    {\n      \"user_id\" : \"22\"\n    }\n  ]\n}"
+            }
           },
           "response": []
         },
         {
-          "name": "View a Segment",
+          "name": "List all tags (List Tag)",
           "request": {
-            "url": "https://api.intercom.io/segments/58a707924f6651b07b94376c?include_count=true",
+            "url": "https://api.intercom.io/tags",
             "method": "GET",
             "header": [
               {
@@ -1527,9 +931,135 @@
       "description": "",
       "item": [
         {
-          "name": "Create a Note",
+          "name": "Create a note",
           "request": {
-            "url": "https://api.intercom.io/notes",
+            "url": "https://api.intercom.io/contacts/<id>/note",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"body\": \"Shiny\",\n  \"admin_id\": \"12345\"\n}\n"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a note",
+          "request": {
+            "url": "https://api.intercom.io/notes/<id>",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List all notes",
+          "request": {
+            "url": "https://api.intercom.io/contacts/<id>/notes",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Segments",
+      "description": "",
+      "item": [
+        {
+          "name": "Retrieve a segment",
+          "request": {
+            "url": "https://api.intercom.io/segments/53203e244cba153d39000062",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List all segments",
+          "request": {
+            "url": "https://api.intercom.io/segments",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Conversations",
+      "description": "",
+      "item": [
+        {
+          "name": "Create a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations",
             "method": "POST",
             "header": [
               {
@@ -1551,15 +1081,15 @@
             "description": "",
             "body": {
               "mode": "raw",
-              "raw": "\n{\n  \"admin_id\" : \"21\",\n  \"body\": \"Text for my note\",\n  \"user\": {\n    \"id\" : \"5310d8e8598c9a0b24000005\"\n  }\n}"
+              "raw": "\n{\n  \"from\": {\n    \"type\": \"user\",\n    \"id\": \"536e564f316c83104c000020\"\n  },\n  \"body\": \"Hey\"\n}"
             }
           },
           "response": []
         },
         {
-          "name": "List Notes for a User (User ID)",
+          "name": "Retrieve a conversation",
           "request": {
-            "url": "https://api.intercom.io/notes?user_id=25",
+            "url": "https://api.intercom.io/conversations/<id>",
             "method": "GET",
             "header": [
               {
@@ -1578,9 +1108,398 @@
           "response": []
         },
         {
-          "name": "List Notes for a User (Email)",
+          "name": "Update a conversation",
           "request": {
-            "url": "https://api.intercom.io/notes?email=jayne%40serenity.io",
+            "url": "https://api.intercom.io/conversations/<id>",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"read\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reply to a conversation ((Contact Reply))",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{id/last}/reply",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"message_type\": \"comment\",\n  \"type\": \"user\",\n  \"intercom_user_id\": \"536e564f316c83104c000020\",\n  \"body\": \"Thanks again :)\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reply to a conversation ((Admin Reply - Note))",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{id/last}/reply",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"message_type\": \"note\",\n  \"type\": \"admin\",\n  \"admin_id\": \"814860\",\n  \"body\": \"<html> <body>  <h2>An Unordered HTML List</h2>  <ul>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ul>    <h2>An Ordered HTML List</h2>  <ol>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ol>   </body> </html>\",\n}\n"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Assign a conversation ((Assigning to Admin))",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{id}/parts",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"type\": \"admin\",\n  \"admin_id\": \"814860\",\n  \"assignee_id\": \"530165\",\n  \"message_type\": \"assignment\",\n  \"body\": \"Reassigning for X reason.\",\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Assign a conversation ((Auto Assignment))",
+          "request": {
+            "url": "https://api.intercom.io/conversations/{id}/run_assignment_rules",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Snooze a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/reply",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"message_type\":\"snoozed\",\n  \"admin_id\": \"724860\",\n  \"snoozed_until\":\"1501512795\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Close a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/parts",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{ \n  \"message_type\": \"close\",\n  \"type\": \"admin\",\n  \"admin_id\": 5784329,\n  \"body\": \"Closed conversation because of X.\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Open a conversation",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/parts",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"message_type\":\"open\",\n  \"admin_id\": \"724860\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attach a contact",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<id>/customers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"admin_id\": \"781236\",\n  \"customer\": {\n    \"intercom_user_id\": \"58c1c78946a0aa9ef45b098a\"\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detach a contact",
+          "request": {
+            "url": "https://api.intercom.io/conversations/<conversation_id>/customers/<contact_id>",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"admin_id\": \"781345\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List all conversations",
+          "request": {
+            "url": "https://api.intercom.io/conversations?order=desc&sort=updated_at",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "description": "",
+      "item": [
+        {
+          "name": "Create a message",
+          "request": {
+            "url": "https://api.intercom.io/messages",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"message_type\": \"email\",\n  \"subject\": \"Hey\",\n  \"body\": \"Ponies, cute small horses or something more sinister?\",\n  \"template\": \"plain\",\n  \"from\": {\n    \"type\": \"admin\",\n    \"id\": \"394051\"\n  },\n  \"to\": {\n    \"type\": \"user\",\n    \"id\": \"536e564f316c83104c000020\"\n  }\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Exports - Message Data",
+      "description": "",
+      "item": [
+        {
+          "name": "Creating an export job",
+          "request": {
+            "url": "https://api.intercom.io/export/messages/data",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"created_at_after\": 1527811200,\n  \"created_at_before\": 1530316800,\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a job status",
+          "request": {
+            "url": "https://api.intercom.io/export/messages/data/v5xsp8c19ji0s82",
             "method": "GET",
             "header": [
               {
@@ -1599,9 +1518,35 @@
           "response": []
         },
         {
-          "name": "List Notes for a User (ID)",
+          "name": "Retrieve the exported data",
           "request": {
-            "url": "https://api.intercom.io/notes?id=5310d8e8598c9a0b24000005",
+            "url": "https://api.intercom.io/download/messages/data/xyz1234",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "‘Accept:",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admins",
+      "description": "",
+      "item": [
+        {
+          "name": "Retrieve an admin",
+          "request": {
+            "url": "https://api.intercom.io/admins/493881",
             "method": "GET",
             "header": [
               {
@@ -1620,9 +1565,113 @@
           "response": []
         },
         {
-          "name": "View a Note",
+          "name": "Set away an admin",
           "request": {
-            "url": "https://api.intercom.io/notes/2",
+            "url": "https://api.intercom.io/admins/814860/away",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "\n{\n  \"away_mode_enabled\": true,\n  \"away_mode_reassign\": false\n\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List all activity logs",
+          "request": {
+            "url": "https://api.intercom.io/admins/activity_logs?created_at_after=489222000&created_at_before=685695600",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List all admins",
+          "request": {
+            "url": "https://api.intercom.io/admins",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "description": "",
+      "item": [
+        {
+          "name": "Retrieve a team",
+          "request": {
+            "url": "https://api.intercom.io/teams/2744328",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AccessToken}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List all teams (*Example )",
+          "request": {
+            "url": "https://api.intercom.io/teams",
             "method": "GET",
             "header": [
               {
@@ -1752,582 +1801,6 @@
           "response": []
         }
       ]
-    },
-    {
-      "name": "Conversations",
-      "description": "",
-      "item": [
-        {
-          "name": "Admin Initiated Conversation (Email From Admin)",
-          "request": {
-            "url": "https://api.intercom.io/messages",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"message_type\": \"email\",\n  \"subject\": \"Hey\",\n  \"body\": \"Ponies, cute small horses or something more sinister?\",\n  \"template\": \"plain\",\n  \"from\": {\n    \"type\": \"admin\",\n    \"id\": \"394051\"\n  },\n  \"to\": {\n    \"type\": \"user\",\n    \"id\": \"536e564f316c83104c000020\"\n  }\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "User or Lead Initiated Conversation (User Initiated Message)",
-          "request": {
-            "url": "https://api.intercom.io/messages",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"from\": {\n    \"type\": \"user\",\n    \"id\": \"536e564f316c83104c000020\"\n  },\n  \"body\": \"Hey\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get a Single Conversation (Get a Single Conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/147",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "List Conversations (List Open Conversations for a Particular Admin)",
-          "request": {
-            "url": "https://api.intercom.io/conversations?type=admin&admin_id=25&open=true",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Replying to a Conversation (Reply with and Without Attachments)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/{conversation_id}/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"intercom_user_id\": \"536e564f316c83104c000020\",\n  \"body\": \"Thanks again :)\",\n  \"type\": \"user\",\n  \"message_type\": \"comment\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Replying to a Conversation (Reply with a note)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/{conversation_id}/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"admin_id\": \"814860\",\n  \"body\": \"<html> <body>  <h2>An Unordered HTML List</h2>  <ul>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ul>    <h2>An Ordered HTML List</h2>  <ol>   <li>Coffee</li>   <li>Tea</li>   <li>Milk</li> </ol>   </body> </html>\",\n  \"type\": \"admin\",\n  \"message_type\": \"note\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Replying to Users Last Conversation (Replying to the Users Most Recent Conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/last/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"intercom_user_id\": \"536e564f316c83104c000020\",\n  \"body\": \"Let me know if you have any more questions!\",\n  \"type\": \"admin\",\n  \"admin_id\": \"1234\",\n  \"message_type\": \"comment\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Assigning a Conversation to Unassigned (Assign to Unassigned)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/6167678340/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"body\": \"Reassigning to no-one!\",\n  \"type\": \"admin\",\n  \"admin_id\": \"1234\",\n  \"assignee_id\": \"0\",\n  \"message_type\": \"assignment\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Run assignment rules on a conversation (Assign based on assignment rules)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/{convo_id}/run_assignment_rules",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Marking a Conversation as Read (Mark a Conversation as Read)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/147",
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"read\": true\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Adding to group conversations as admin (Adding a customer to a group conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/11055118659/customers",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"admin_id\": \"781236\",\n  \"customer\":{\n    \"intercom_user_id\": \"58c1c78946a0aa9ef45b098a\"\n  }\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Adding to group conversations as customer (Adding a customer to a group conversation as customer)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/11055118659/customers",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"intercom_user_id\": \"55c1c78946b0aa9ef45b09ff\",\n  \"customer\":{\n    \"intercom_user_id\": \"58c1c78946a0aa9ef45b098a\"\n  }\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Deleting from group conversations (Deleting a customer from a group conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/11055118659/customers/58c1c72246a0aa9ef45a098e",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"admin_id\": \"781345\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Snoozing a conversation (Snooze a conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/11055118659/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"admin_id\": \"724860\",\n  \"message_type\":\"snoozed\",\n  \"snoozed_until\":\"1501512795\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Unsnoozing a conversation (Unsnooze a conversation)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/11055118659/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"admin_id\": \"814860\",\n  \"message_type\":\"open\"\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Closing a conversation (Closing a Conversation Without Reply)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/xxx/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "{ \"admin_id\": CLOSING_ADMIN_ID, \"message_type\": \"close\", \"type\": \"admin\"}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Closing a conversation (Closing a Conversation With Reply)",
-          "request": {
-            "url": "https://api.intercom.io/conversations/xxx/reply",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "{ \"body\":\"closing this convo\", \"admin_id\": CLOSING_ADMIN_ID, \"message_type\": \"close\", \"type\": \"admin\"}"
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Exports - Message Data",
-      "description": "",
-      "item": [
-        {
-          "name": "Creating an export job",
-          "request": {
-            "url": "https://api.intercom.io/export/messages/data",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": "",
-            "body": {
-              "mode": "raw",
-              "raw": "\n{\n  \"created_at_after\": 1527811200,\n  \"created_at_before\": 1530316800,\n}"
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Checking the status of the job",
-          "request": {
-            "url": "https://api.intercom.io/export/messages/data/v5xsp8c19ji0s82",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Downloading the data",
-          "request": {
-            "url": "https://api.intercom.io/download/messages/data/xyz1234",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{AccessToken}}",
-                "description": ""
-              },
-              {
-                "key": "‘Accept:",
-                "description": ""
-              }
-            ],
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Errors",
-      "description": "",
-      "item": []
     }
   ]
 }

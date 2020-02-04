@@ -50,21 +50,37 @@ function createPostmanOutput(data){
 			description: "",
 			item: []
 		}
-
 		categoryData.forEach(function(item){
-			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "").replace(/-d'$/m, "-d '").replace(/:Bearer/gm, ": Bearer").replace(/:application/gm, ": application");
-			var curl = parse(code);
+			if (!item.code.match(/curl/)) return;
+			var code = item.code.replace(/^\#.*\n/m,"").replace(/^\$ /, "").replace(/-d'$/m, "-d '").replace(/:Bearer/gm, ": Bearer").replace(/:application/gm, ": application").replace(/curl \\/gm, "curl ");
+			if(code.match(/-d\s*$/m)){
+				code = code.replace(/-d\s*$/m, "-d '");
+				code += "'";
+				code = code.replace(/-d ''/m,"");
+			}
+			var curl = null;
+			var extra = "";
+			try
+			{
+				curl = parse(code);
+			}
+			catch(e){
+			}
+
 			if(!curl){
 				console.error("=======================================================================================\n" + 
-							  "ERROR: Can't parse curl for " + category + ": " + item.header + (item.subheader ? " (" + item.subheader + ")": "") +"\n" + 
-							  "---------------------------------------------------------------------------------------\n", 
-							  item.code);
+				              "ERROR: Can't parse curl for " + category + ": " + item.header + (item.subheader ? " (" + item.subheader + ")": "") +"\n" + 
+				              "---------------------------------------------------------------------------------------\n", 
+				              );
+				console.error("original  code\n", item.code);
+				console.error("sanitized code\name", code);
 			}
 			else{
 				postmanCategoryOutput.item.push(createPostmanEntry(item, curl));
 			}
 		});
-		postmanItems.push(postmanCategoryOutput);
+		if(postmanCategoryOutput.item.length > 0)
+			postmanItems.push(postmanCategoryOutput);
 	}
 	return {
 		"variables": [],
@@ -91,7 +107,10 @@ function createPostmanEntry(item, curl){
 	}
 	var name = item.header;
 	if(item.subheader) {
-		name += " (" + item.subheader + ")";
+		item.subheader = item.subheader.replace(/Request & Response\s*/g, "");
+		if(item.subheader){
+			name += " (" + item.subheader + ")";
+		}
 	}
 	var entry = {
 		"name": name,
@@ -171,6 +190,11 @@ function convertDeveloperWebsiteHTMLToJson(body){
 		});
 	});
 	return entries;
+}
+
+function createPostmanCollection(input, output){
+	var postmanOutput = createPostmanOutput(readJsonFromFile(input));
+	writeJSONToFile(postmanOutput,output);
 }
 
 
@@ -257,21 +281,27 @@ function findBlock(text, type, start_text, end_text, start_position)
 
 // Do the download and extraction
 console.log(`Downloading dev docs: ${URL}....`);
-request.get(URL, function (error, response, body) {
-	error = false;
-	if(error){
-		console.error("ERROR: Could not download page", error);
-	}
-	else {
-		// body = readFile(outputTempDevDocsHTML)
-		writeToFile(body, outputTempDevDocsHTML);
-		if (response.statusCode != 200){
-			console.warn("WARNING: Expected response code of 200 but got " + response.statusCode + ". Data may not be properly returned but will try parsing anyway");
+
+const do_download = false;
+if(do_download){
+	request.get(URL, function (error, response, body) {
+		error = false;
+		if(error){
+			console.error("ERROR: Could not download page", error);
 		}
-		var entries = convertDeveloperWebsiteHTMLToJson(body);
-		writeJSONToFile(entries, outputTempDevDocsToJsonFile);
-		var postmanOutput = createPostmanOutput(readJsonFromFile(outputTempDevDocsToJsonFile));
-		writeJSONToFile(postmanOutput,outputFinalPostmanFile);
-	}
-});
+		else {
+			writeToFile(body, outputTempDevDocsHTML);
+			if (response.statusCode != 200){
+				console.warn("WARNING: Expected response code of 200 but got " + response.statusCode + ". Data may not be properly returned but will try parsing anyway");
+			}
+			var entries = convertDeveloperWebsiteHTMLToJson(body);
+			writeJSONToFile(entries, outputTempDevDocsToJsonFile);
+			createPostmanCollection(outputTempDevDocsToJsonFile, outputFinalPostmanFile);
+		}
+	});
+}
+else{
+	createPostmanCollection(outputTempDevDocsToJsonFile, outputFinalPostmanFile);
+}
+
 
